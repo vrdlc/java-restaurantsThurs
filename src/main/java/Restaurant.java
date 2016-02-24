@@ -6,7 +6,7 @@ public class Restaurant {
   private String name;
   private String price;
   private String vibe;
-  private int cuisineId;
+  private int cuisineId; //these MUST match sql table column names exactly
 
   public Restaurant (String name, String price, String vibe, int cuisineId) {
     this.name = name;
@@ -58,7 +58,7 @@ public class Restaurant {
         .addParameter("vibe", vibe)
         .addParameter("cuisineId", cuisineId)
         .executeUpdate()
-        .getKey(); //SHOULD THESE BE mVariables?
+        .getKey();
     }
   }
 
@@ -69,16 +69,62 @@ public class Restaurant {
         return con.createQuery(sql).executeAndFetch(Restaurant.class);
     }
   }
-  //
+
+  //FIND
+  public static Restaurant find(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM restaurants WHERE id=:id";
+      Restaurant restaurant = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Restaurant.class);
+      return restaurant;
+    }
+  }
+
   // //UPDATE
-  // public void update(String newName) {
-  //   this.mName = newName;
-  //   try(Connection con = DB.sql2o.open()) {
-  //     /******************************************************
-  //       Students: TODO: Display all restaurants on main page
-  //     *******************************************************/
-  //     }
-  // }
+  public void updateName(String newName) {
+    this.name = newName;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE restaurants SET name = :name WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("name", name)
+        .addParameter("id", id)
+        .executeUpdate();
+      }
+  }
+
+  public void updatePrice(String newPrice) {
+    this.price = newPrice;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE restaurants SET price = :price WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("price", price)
+        .addParameter("id", id)
+        .executeUpdate();
+      }
+  }
+
+  public void updateVibe(String newVibe) {
+    this.vibe = newVibe;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE restaurants SET vibe = :vibe WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("vibe", vibe)
+        .addParameter("id", id)
+        .executeUpdate();
+      }
+  }
+
+  public void updateCuisineId(int newCuisineId) {
+    this.cuisineId = newCuisineId;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE restaurants SET cuisineId = :cuisineId WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("cuisineId", cuisineId)
+        .addParameter("id", id)
+        .executeUpdate();
+      }
+  }
   //
   // //DELETE
   // public void delete() {
@@ -91,7 +137,7 @@ public class Restaurant {
   //
   // /******************************************************
   //   Students:
-  //   TODO: Create find method
+
   //   TODO: Create method to get cuisine type
   // *******************************************************/
 
