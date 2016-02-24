@@ -48,7 +48,7 @@ public class Restaurant {
     }
   }
 
-  // //CREATE
+  //CREATE
   public void save() {
     try (Connection con = DB.sql2o.open()) {
       String sql = "INSERT INTO restaurants(name, price, vibe, cuisineId) VALUES (:name, :price, :vibe, :cuisineId)";
@@ -81,7 +81,7 @@ public class Restaurant {
     }
   }
 
-  // //UPDATE
+  //UPDATE
   public void updateName(String newName) {
     this.name = newName;
     try(Connection con = DB.sql2o.open()) {
@@ -125,15 +125,16 @@ public class Restaurant {
         .executeUpdate();
       }
   }
-  //
-  // //DELETE
-  // public void delete() {
-  //   try(Connection con = DB.sql2o.open()) {
-  //     /******************************************************
-  //       Students: TODO: Display all restaurants on main page
-  //     *******************************************************/
-  //   }
-  // }
+
+  //DELETE
+  public void deleteRestaurant() {
+    try(Connection con = DB.sql2o.open()) {
+    String sql = "DELETE FROM restaurants WHERE id = :id";
+    con.createQuery(sql)
+      .addParameter("id", id)
+      .executeUpdate();
+    }
+  }
   //
   // /******************************************************
   //   Students:

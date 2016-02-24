@@ -74,4 +74,22 @@ public class RestaurantTest {
     testRestaurant.updateCuisineId(3);
     assertEquals(Restaurant.all().get(0).getCuisineId(), 3);
   }
+
+  @Test
+  public void deleteRestaurant_deletesRestaurantFromDatabase() {
+    Restaurant testRestaurant = new Restaurant("Lardo", "$", "Casual", 2);
+    testRestaurant.save();
+    testRestaurant.deleteRestaurant();
+    assertEquals(Restaurant.all().size(), 0);
+  }
+
+  // @Test TO ADD WHEN CUISINE IS COMPLETE
+  // public void save_savesCuisineIdIntoRestaurant() {
+  //   Cuisine myCuisine = new Cuisine("American");
+  //   myCuisine.save();
+  //   Restaurant myRestaurant = new Restaurant("Lardo", "$", "Casual", 2);
+  //   myRestaurant.save();
+  //   Restaurant savedRestaurant = Restaurant.find(myRestaurant.getId());
+  //   assertEquals(savedRestaurant.getCuisineId(), myCuisine.getId());
+  // }
 }
