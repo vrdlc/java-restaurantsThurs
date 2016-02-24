@@ -126,7 +126,7 @@ public class Restaurant {
       }
   }
 
-  //DELETE
+  //DESTROY
   public void deleteRestaurant() {
     try(Connection con = DB.sql2o.open()) {
     String sql = "DELETE FROM restaurants WHERE id = :id";
