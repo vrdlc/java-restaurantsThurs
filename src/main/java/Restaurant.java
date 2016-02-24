@@ -2,37 +2,37 @@ import org.sql2o.*;
 import java.util.List;
 
 public class Restaurant {
-  private int mId;
-  private String mName;
-  private String mPrice;
-  private String mVibe;
-  private int mCuisineId;
+  private int id;
+  private String name;
+  private String price;
+  private String vibe;
+  private int cuisineId;
 
   public Restaurant (String name, String price, String vibe, int cuisineId) {
-    this.mName = name;
-    this.mPrice = price;
-    this.mVibe = vibe;
-    this.mCuisineId = cuisineId;
+    this.name = name;
+    this.price = price;
+    this.vibe = vibe;
+    this.cuisineId = cuisineId;
   }
 
   public int getId() {
-    return mId;
+    return id;
   }
 
   public String getName() {
-    return mName;
+    return name;
   }
 
   public String getPrice() {
-    return mPrice;
+    return price;
   }
 
   public String getVibe() {
-    return mVibe;
+    return vibe;
   }
 
   public int getCuisineId() {
-    return mCuisineId;
+    return cuisineId;
   }
 
   @Override
@@ -43,7 +43,7 @@ public class Restaurant {
       Restaurant newRestaurant = (Restaurant) otherRestaurant;
       return this.getName().equals(newRestaurant.getName()) &&
         this.getId() == newRestaurant.getId() &&
-        this.getprice().equals(newRestaurant.getPrice()) &&
+        this.getPrice().equals(newRestaurant.getPrice()) &&
         this.getVibe().equals(newRestaurant.getVibe());
     }
   }
@@ -51,14 +51,22 @@ public class Restaurant {
   // //CREATE
   public void save() {
     try (Connection con = DB.sql2o.open()) {
-
+      String sql = "INSERT INTO restaurants(name, price, vibe, cuisineId) VALUES (:name, :price, :vibe, :cuisineId)";
+      this.id = (int) con.createQuery(sql, true)
+        .addParameter("name", name)
+        .addParameter("price", price)
+        .addParameter("vibe", vibe)
+        .addParameter("cuisineId", cuisineId)
+        .executeUpdate()
+        .getKey(); //SHOULD THESE BE mVariables?
     }
   }
 
   //READ
   public static List<Restaurant> all() {
-    try (Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO restaurants()"
+      String sql = "SELECT id, name, price, vibe, cuisineId FROM restaurants";
+      try(Connection con = DB.sql2o.open()) {
+        return con.createQuery(sql).executeAndFetch(Restaurant.class);
     }
   }
   //
