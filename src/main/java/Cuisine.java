@@ -72,7 +72,7 @@ public class Cuisine {
 
   public static List<Restaurant> getRestaurants(int id) {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT * FROM restaurants WHERE cuisineId = :cuisineId";
+      String sql = "SELECT * FROM restaurants WHERE cuisineId = :cuisineId ORDER BY name";
       return con.createQuery(sql)
                 .addParameter("cuisineId", id)
                 .executeAndFetch(Restaurant.class);

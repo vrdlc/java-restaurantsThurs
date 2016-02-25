@@ -64,7 +64,7 @@ public class Restaurant {
 
   //READ
   public static List<Restaurant> all() {
-      String sql = "SELECT id, name, price, vibe, cuisineId FROM restaurants";
+      String sql = "SELECT id, name, price, vibe, cuisineId FROM restaurants ORDER BY name";
       try(Connection con = DB.sql2o.open()) {
         return con.createQuery(sql).executeAndFetch(Restaurant.class);
       }
@@ -146,4 +146,6 @@ public class Restaurant {
         .executeUpdate();
     }
   }
+
+  //HERE WE WILL HAVE A METHOD TO CALL ALL REVIEWS FROM ONE RESTAURANT, LIKE getRestaurants IN Cuisine CLASS OBJECT
 }
