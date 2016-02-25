@@ -1,1 +1,28 @@
+index.vtl
 
+<h1>Welcome to the Restaurant Finder!</h1>
+
+
+<form action="/restaurants/$restaurant.getId()" method="post">
+  <div class="form-group">
+    <input id="restaurantId" name="restaurantId" type=hidden value="$restaurant.getId">
+    <label for="restaurantName">Enter Restaurant Name</label>
+    <input id="restaurantName" name="restaurantName" type="text">
+
+    <input id="cuisineId" name="cuisineId" type=hidden value="$cuisine.getId">
+    <label for="cuisineId">Choose Cuisine Type</label>
+    <select id="cuisineName" name="cuisineName" type="text">
+      #foreach($cuisine in $cuisines)
+      <option value="$cuisine.getId()">$cuisine.getType()</option>
+      #end
+    </select>
+  </div>
+  <button type="submit" class="btn btn-success">Add Restaurant</button>
+</form>
+
+<!-- POST FORM TO ADD RESTAURANT NAME = (Restaurant Name, null, null, cuisineId)
+       DROPDOWN = (Cuisine Name)
+            SUBMIT BUTTON
+
+
+LINKS: View All restaurants -->

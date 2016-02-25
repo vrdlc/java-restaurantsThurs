@@ -1,0 +1,16 @@
+restaurants.vtl (all)
+/restaurants
+
+
+<ul>
+  #foreach($restaurant in $restaurants)
+  <li><h4>$restaurant.getName()</h4></li>
+    <form action="/delete/restaurant/$restaurant.getId()" method="post">
+
+    </form>
+  #end
+</ul>
+
+<a href="/">Return to Index</a>
+<a href="/restaurants">All Restaurants</a>
+LIST OF ALL RESTAURANTS IN ALPHABETICAL ORDER W/ LINKS TO restaurantId PAGES

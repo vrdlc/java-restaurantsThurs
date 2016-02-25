@@ -28,4 +28,12 @@ public class AppTest extends FluentTest {
     goTo("http://localhost:4567/");
     assertThat(pageSource()).contains("");
   }
+
+  @Test
+  public void restaurantIsDisplayed() {
+    Restaurant myRestaurant = new Restaurant("Lardo", "$", "Casual", 1);
+    myRestaurant.save();
+    goTo("http://localhost:4567/restaurant/:id");
+    assertThat(pageSource()).contains("Lardo");
+  }
 }

@@ -67,7 +67,7 @@ public class Restaurant {
       String sql = "SELECT id, name, price, vibe, cuisineId FROM restaurants";
       try(Connection con = DB.sql2o.open()) {
         return con.createQuery(sql).executeAndFetch(Restaurant.class);
-    }
+      }
   }
 
   //FIND
@@ -90,7 +90,7 @@ public class Restaurant {
         .addParameter("name", name)
         .addParameter("id", id)
         .executeUpdate();
-      }
+    }
   }
 
   public void updatePrice(String newPrice) {
@@ -101,7 +101,7 @@ public class Restaurant {
         .addParameter("price", price)
         .addParameter("id", id)
         .executeUpdate();
-      }
+    }
   }
 
   public void updateVibe(String newVibe) {
@@ -112,7 +112,7 @@ public class Restaurant {
         .addParameter("vibe", vibe)
         .addParameter("id", id)
         .executeUpdate();
-      }
+    }
   }
 
   public void updateCuisineId(int newCuisineId) {
@@ -123,23 +123,32 @@ public class Restaurant {
         .addParameter("cuisineId", cuisineId)
         .addParameter("id", id)
         .executeUpdate();
-      }
+    }
   }
 
   //DESTROY
   public void deleteRestaurant() {
     try(Connection con = DB.sql2o.open()) {
-    String sql = "DELETE FROM restaurants WHERE id = :id";
-    con.createQuery(sql)
-      .addParameter("id", id)
-      .executeUpdate();
+      String sql = "DELETE FROM restaurants WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("id", id)
+        .executeUpdate();
     }
   }
-  //
+
   // /******************************************************
   //   Students:
 
   //   TODO: Create method to get cuisine type
   // *******************************************************/
 
+  public String getCuisineType() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT type FROM cuisines WHERE id = :id";
+      return con.createQuery(sql)
+        .addParameter("id", cuisineId)
+        .executeAndFetchFirst(Cuisine.class)
+        .getType();
+    }
+  }
 }

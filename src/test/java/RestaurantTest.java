@@ -83,13 +83,22 @@ public class RestaurantTest {
     assertEquals(Restaurant.all().size(), 0);
   }
 
-  // @Test TO ADD WHEN CUISINE IS COMPLETE
-  // public void save_savesCuisineIdIntoRestaurant() {
-  //   Cuisine myCuisine = new Cuisine("American");
-  //   myCuisine.save();
-  //   Restaurant myRestaurant = new Restaurant("Lardo", "$", "Casual", 2);
-  //   myRestaurant.save();
-  //   Restaurant savedRestaurant = Restaurant.find(myRestaurant.getId());
-  //   assertEquals(savedRestaurant.getCuisineId(), myCuisine.getId());
-  // }
+  @Test
+  public void save_savesCuisineIdIntoRestaurant() {
+    Cuisine myCuisine = new Cuisine("American");
+    myCuisine.save();
+    Restaurant myRestaurant = new Restaurant("Lardo", "$", "Casual", myCuisine.getId());
+    myRestaurant.save();
+    Restaurant savedRestaurant = Restaurant.find(myRestaurant.getId());
+    assertEquals(savedRestaurant.getCuisineId(), myCuisine.getId());
+  }
+
+  @Test
+  public void getCuisineType_getsCuisineAssociatedWithRestaurant() {
+    Cuisine myCuisine = new Cuisine("American");
+    myCuisine.save();
+    Restaurant myRestaurant = new Restaurant("Lardo", "$", "Casual", myCuisine.getId());
+    myRestaurant.save();
+    assertEquals(myRestaurant.getCuisineType(), myCuisine.getType());
+  }
 }
