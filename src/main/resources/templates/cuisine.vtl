@@ -1,8 +1,14 @@
+cuisine.vtl
+
 <h3>Here are all the the restaurants for this cuisine:</h3>
 
-#foreach($restaurant in $cuisine.getRestaurants())
- <h3>$restaurant.getName()</a></h3>
-#end
+<!-- #if ($restaurants) -->
+  #foreach($restaurant in $restaurants)
+   <h3>$restaurant.getName()</a></h3>
+  #end
+  <!-- #else
+  <h3>There are no restaurants for this cuisine, want to <a href="/cuisines/$cuisine.getId()/restaurants/new">add one?</a></h3>
+#end -->
 
 <a href="/cuisines/$cuisine.getId()/restaurants/new">Add a new restaurant</a>
 <a href="/">Return to Main Page</a>
