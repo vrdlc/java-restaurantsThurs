@@ -70,6 +70,17 @@ public class Restaurant {
       }
   }
 
+
+  public String getCuisineType() {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT type FROM cuisines WHERE id = :id";
+      return con.createQuery(sql)
+        .addParameter("id", cuisineId)
+        .executeAndFetchFirst(Cuisine.class)
+        .getType();
+    }
+  }
+
   //FIND
   public static Restaurant find(int id) {
     try(Connection con = DB.sql2o.open()) {
@@ -133,22 +144,6 @@ public class Restaurant {
       con.createQuery(sql)
         .addParameter("id", id)
         .executeUpdate();
-    }
-  }
-
-  // /******************************************************
-  //   Students:
-
-  //   TODO: Create method to get cuisine type
-  // *******************************************************/
-
-  public String getCuisineType() {
-    try(Connection con = DB.sql2o.open()) {
-      String sql = "SELECT type FROM cuisines WHERE id = :id";
-      return con.createQuery(sql)
-        .addParameter("id", cuisineId)
-        .executeAndFetchFirst(Cuisine.class)
-        .getType();
     }
   }
 }

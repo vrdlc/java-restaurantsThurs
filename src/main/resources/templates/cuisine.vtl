@@ -1,5 +1,8 @@
-cuisine.vtl (specific ID)
-/cuisine/:id
+<h3>Here are all the the restaurants for this cuisine:</h3>
 
-<a href="/">Return to Index</a>
-LIST OF ALL RESTAURANTS BASED ON SPECIFIC CUISINE ID W/ LINKS TO restaurantId PAGES
+#foreach($restaurant in $cuisine.getRestaurants())
+ <h3>$restaurant.getName()</a></h3>
+#end
+
+<a href="/cuisines/$cuisine.getId()/restaurants/new">Add a new restaurant</a>
+<a href="/">Return to Main Page</a>

@@ -1,33 +1,9 @@
-restaurant.vtl (specific ID)
-restaurant/:id
-
 #if ($restaurant)
   <h1>$restaurant.getName()</h1>
+
 #else
-  <h1> Restaurant not found </h1>
+  <h1>Restaurant not found</h1>
 #end
 
-
-<form action="/restaurants/:id" method="post">
-  <div class="form-group">
-    <input id="priceId" name="priceId" type=hidden value="$price.getId">
-    <label for="priceName">Enter Price</label>
-    <input id="priceName" name="priceName" type="text">
-    <input id="vibeId" name="vibeId" type=hidden value="$vibe.getId">
-    <label for="vibeId">Choose Vibe Type</label>
-    <input id="vibeName" name="vibeName" type="text">
-  </div>
-  <button type="submit" class="btn btn-success">Add Price and Vibe</button>
-</form>
-
-<a href="/">Return to Index</a>
-<a href="/restaurants">View All Restaurants</a>
-
-UPDATE: FORM FOR price
-        FORM FOR vibe
-
-        (IF ELSE STATEMENT TO HIDE FORMS IF price/vibe ARE COMPLETE)
-
-UPDATE: ADD REVIEW (MAKE REVIEW OBJECT)
-
-ADD WAYS TO VIEW BY OTHER PARAMETERS?
+<a href="/restaurants/new">Add another restaurant</a>
+<a href="/restaurants">All tasks</a>
