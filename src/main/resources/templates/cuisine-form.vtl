@@ -1,6 +1,7 @@
-cuisine-form.vtl
+<h1>Add a Cuisine:</h1>
 
-FORM TO ADD CUISINE TO DROPDOWN MENU
-
-LIST OF ALL PREVIOUSLY POSTED CUISINES?
-<a href="/">Return to Index</a>
+<form action="/cuisines" method="post">
+  <label for="type">Cuisine Type:</label>
+  <input id="type" name="type" type="text">
+  <button type="submit" class="btn btn-success">Add Cuisine</button>
+</form>

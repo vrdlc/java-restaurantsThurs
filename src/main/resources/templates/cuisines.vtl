@@ -1,4 +1,7 @@
-cuisines.vtl (all)
-/cuisines
-<a href="/">Return to Index</a>
-LIST OF ALL CUISINES IN ALPHABETICAL ORDER W/ LINKS TO cuisineId PAGES
+<h1>Cuisines</h1>
+
+#foreach($cuisine in $cuisines)
+ <h3><a href="/cuisines/$cuisine.getId()">$cuisine.getType()</a></h3>
+#end
+
+<a href="/cuisines/new">Add New Cuisine</a>
