@@ -92,7 +92,35 @@ public class Restaurant {
     }
   }
 
+  public static List<Review> getReviews(int id) {
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "SELECT * FROM reviews WHERE restaurantId = :restaurantId";
+      return con.createQuery(sql)
+              .addParameter("restaurantId", id)
+              .executeAndFetch(Review.class);
+    }
+  }
+
+
   //UPDATE
+
+  public void update(String newName, String newPrice, String newVibe, int newCuisineId) {
+    this.name = newName;
+    this.price = newPrice;
+    this.vibe = newVibe;
+    this.cuisineId = newCuisineId;
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE restaurants SET name = :newName, price = :newPrice, vibe = :newVibe, cuisineId = :cuisineId";
+      con.createQuery(sql)
+        .addParameter("name", newName)
+        .addParameter("price", newPrice)
+        .addParameter("vibe", newVibe)
+        .addParameter("cuisineId", cuisineId)
+        .addParameter("id", id)
+        .executeUpdate();
+    }
+  }
+
   public void updateName(String newName) {
     this.name = newName;
     try(Connection con = DB.sql2o.open()) {
@@ -147,5 +175,4 @@ public class Restaurant {
     }
   }
 
-  //HERE WE WILL HAVE A METHOD TO CALL ALL REVIEWS FROM ONE RESTAURANT, LIKE getRestaurants IN Cuisine CLASS OBJECT
 }

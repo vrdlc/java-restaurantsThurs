@@ -95,5 +95,30 @@ public class App {
     }, new VelocityTemplateEngine());
 
 
+    get("/update-restaurant", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/update-restaurant.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
+    post("/restaurant/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      String restaurantId = request.params(":id");
+      Restaurant restaurant = Restaurant.find(Integer.parseInt(restaurantId));
+      String name = request.queryParams("name");
+      String price = request.queryParams("price");
+      String vibe = request.queryParams("vibe");
+      int cuisineId = Integer.parseInt(request.queryParams("cuisineId"));
+      restaurant.update(name, price, vibe, cuisineId);
+
+
+
+      model.put("restaurant", restaurant);
+      model.put("cuisine", Cuisine.class);
+      model.put("review", Review.class);
+      model.put("template", "templates/update-restaurant.vtl");
+      return new ModelAndView(model, layout);
+    }, new VelocityTemplateEngine());
+
   }
 }

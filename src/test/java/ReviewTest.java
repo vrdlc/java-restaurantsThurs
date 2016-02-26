@@ -76,9 +76,9 @@ public class ReviewTest {
 
   @Test
   public void delete_deletesReviewFromDB() {
-  Review testReview = new Review("Awful", "dudebro", "The worst", 1);
-  testReview.save();
-  testReview.delete();
-  assertTrue(Review.all().size() == 0);
-
+    Review testReview = new Review("Awful", "dudebro", "The worst", 1);
+    testReview.save();
+    testReview.delete();
+    assertTrue(Review.all().size() == 0);
+  }
 }

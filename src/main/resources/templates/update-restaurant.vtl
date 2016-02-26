@@ -1,0 +1,30 @@
+update-restaurant.vtl
+
+<form action="/restaurant/:id" method="post">
+
+  <input id="title" type="hidden" name="title" value="$review.getId()">
+  <input id="title" type="hidden" name="title" value="$review.getId()">
+  <input id="title" type="hidden" name="title" value="$review.getId()">
+
+
+  <div class="form-group col-lg" id="reviewForm">
+    <label for="price">Price:</label>
+    <select id="price" type="text" name="price">
+      <option>$ - $10 or less</option>
+      <option>$$ - Between $10 and $20</option>
+      <option>$$$ - $20 and above</option>
+
+    </select>
+
+    <label for="vibe">Vibe:</label>
+    <textarea id="vibe" type="text" name="vibe" class="form-control" required  placeholder="How does it feel in there?"></textarea>
+
+    <label for="review">Post your review:</label>
+    <input id="title" type="text" name="title" class="form-control" required placeholder="Add a title to your review">
+    <input id="username" type="text" name="usesrname" class="form-control" required placeholder="Please enter your username.">
+    <textarea id="text" type="text" name="text" class="form-control" required placeholder="Write your review here!" rows="10"></textarea>
+
+  </div>
+
+  <button type="submit" class="btn btn-success" >Add Information!</button>
+</form>

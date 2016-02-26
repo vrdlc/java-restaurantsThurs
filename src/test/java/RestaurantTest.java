@@ -101,4 +101,13 @@ public class RestaurantTest {
     myRestaurant.save();
     assertEquals(myRestaurant.getCuisineType(), myCuisine.getType());
   }
+
+  // @Test
+  // public void getReviews_getReviewsAssociatedWithRestaurant() {
+  //   Review myReview = new Review ("Awful", "dudebro", "The worst", 1);
+  //   myReview.save();
+  //   Restaurant myRestaurant = new Restaurant("Lardo", "$", "Casual", myRestaurant.getId());
+  //   myRestaurant.save();
+  //   assertEquals(myRestaurant.getReviews(), myReview);
+  // }
 }

@@ -81,6 +81,8 @@ public class Review {
     }
   }
 
+
+
   //UPDATE
 
   public void updateTitle(String newTitle) {
@@ -133,8 +135,6 @@ public class Review {
       con.createQuery(sql)
       .addParameter("id", id)
       .executeUpdate();
+    }
   }
-
-
-
 }
